@@ -29,18 +29,11 @@ export default function CTA() {
 
           <div className="mt-10 flex flex-wrap gap-4">
             <MagneticButton strength={0.5}>
-              <Button
-                href="/contact"
-                className="border-ink bg-ink text-bone hover:bg-bone hover:text-ink hover:border-bone"
-              >
+              <Button href="/contact" variant="invert">
                 Get a Quote
               </Button>
             </MagneticButton>
-            <Button
-              href={`tel:${COMPANY.phoneE164}`}
-              variant="outline"
-              className="border-ink/40 text-ink hover:border-ink hover:text-ink"
-            >
+            <Button href={`tel:${COMPANY.phoneE164}`} variant="outlineDark">
               Call {COMPANY.phoneDisplay}
             </Button>
           </div>
