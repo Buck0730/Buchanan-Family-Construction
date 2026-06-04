@@ -1,0 +1,178 @@
+# Buchanan Family Construction
+
+A bold, industrial marketing website **and** an AI phone-agent admin dashboard, in one Next.js app.
+
+- **Marketing site** — home, services, projects, about, and a lead-capture contact form, with Apple-style smooth scrolling, scroll-driven reveals, pinned/scrubbed sections, count-up stats, magnetic buttons, and 3D flip-to-slideshow service cards.
+- **AI phone agent + admin** — a password-gated dashboard with a big ON/OFF toggle. When **ON**, the phone agent (Retell) greets callers, takes a message, and texts/emails the owner a summary. When **OFF**, calls forward straight to the owner's cell. Every AI-handled call is logged.
+
+The voice platform (Retell) handles real-time audio, so the backend is just plain HTTP webhooks — everything lives in this one app. No separate server.
+
+---
+
+## Tech stack
+
+| Area | Tech |
+| --- | --- |
+| Framework | Next.js 16 (App Router, TypeScript, Turbopack) |
+| Styling | Tailwind CSS v4 (CSS-first `@theme` tokens) |
+| Smooth scroll | [Lenis](https://github.com/darkroomengineering/lenis) |
+| Scroll animation | GSAP + ScrollTrigger (via `@gsap/react`'s `useGSAP`) |
+| Micro-interactions | Motion (Framer Motion) |
+| Fonts | Anton (display) + Inter (body) via `next/font` |
+| Database | Supabase (Postgres) |
+| Phone agent | Retell AI |
+| SMS | Twilio |
+| Email | Resend |
+| Hosting | Vercel |
+
+---
+
+## Getting started
+
+**Prerequisites:** Node.js **20.9+** (Next 16 requirement) and npm.
+
+```bash
+npm install
+cp .env.example .env.local   # then fill in as needed
+npm run dev                  # http://localhost:3000
+```
+
+The marketing site runs fully **without any environment variables**. The admin dashboard, phone agent, and notifications light up as you configure the services below.
+
+### Scripts
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Run the production build |
+| `npm run lint` | ESLint |
+| `node scripts/gen-placeholders.mjs` | Regenerate placeholder images |
+
+---
+
+## Configuration
+
+All variables live in `.env.example`. Copy it to `.env.local` and fill in what you need.
+
+### 1. Admin dashboard
+
+```
+ADMIN_PASSWORD=choose-a-strong-password
+```
+
+Visit **`/admin`** → you'll be redirected to `/admin/login`. Sign in with `ADMIN_PASSWORD`. The session is an httpOnly cookie (sha256 of the password, never the raw value). This is the minimum needed to use the toggle UI.
+
+### 2. Supabase (toggle state + call log)
+
+1. Create a Supabase project.
+2. Run [`supabase/schema.sql`](supabase/schema.sql) in the SQL editor. It creates `agent_settings` (the single toggle row), `calls`, and `leads`, and enables RLS (server-only access).
+3. In the `agent_settings` row, set `forward_number` to the owner's cell (E.164, e.g. `+12155550100`).
+4. Add the keys:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
+```
+
+All database access happens server-side with the service-role key (which bypasses RLS), so the public anon key can't read your call log.
+
+### 3. Notifications — Twilio (SMS) + Resend (email)
+
+```
+TWILIO_ACCOUNT_SID=...
+TWILIO_AUTH_TOKEN=...
+TWILIO_FROM_NUMBER=+1...
+RESEND_API_KEY=...
+RESEND_FROM_EMAIL=Buchanan Family Construction <calls@yourdomain.com>
+NOTIFY_EMAIL=owner@email.com
+NOTIFY_PHONE=+1...
+```
+
+Both are optional and degrade gracefully — if a service isn't configured, that channel is simply skipped (the app never crashes).
+
+### 4. Retell AI (the phone agent)
+
+```
+RETELL_API_KEY=...
+RETELL_AGENT_ID=...
+RETELL_WEBHOOK_SECRET=optional-shared-secret
+```
+
+1. Create an agent in Retell and buy/assign a phone number.
+2. Point the number's **inbound webhook** at `POST /api/retell/inbound`.
+3. Point the agent's **post-call webhook** at `POST /api/retell/post-call`.
+4. (Optional) Set `RETELL_WEBHOOK_SECRET` and append `?secret=<value>` to both webhook URLs to reject forged requests.
+
+**How the toggle drives the call:** `/api/retell/inbound` reads `agent_settings.is_active` and responds with dynamic variables:
+
+- `agent_active` — `"true"` / `"false"`
+- `forward_number` — the owner's cell
+- `callback_timeframe` — e.g. `"24 hours"`
+
+In your Retell agent's prompt/flow, branch on these:
+
+- when `{{agent_active}}` is **false** → transfer the call to `{{forward_number}}`
+- when **true** → greet the caller, take a brief message, promise a callback within `{{callback_timeframe}}`, and state the call is recorded.
+
+> **Verify Retell's field names.** Retell is the source of truth for exact inbound/post-call webhook shapes. The handlers in [`lib/retell.ts`](lib/retell.ts) are written defensively and commented — confirm them against current Retell docs when you wire the live agent.
+
+> **Legal (PA):** Pennsylvania is a **two-party consent** state. Keep the "this call is recorded" line in the agent's greeting.
+
+---
+
+## Images
+
+Galleries use on-brand SVG placeholders in `public/images/` generated by
+[`scripts/gen-placeholders.mjs`](scripts/gen-placeholders.mjs). Swap them for real
+photography at the same paths (e.g. `public/images/projects/kitchens/kitchen-1.svg`).
+Photo paths are centralized in [`lib/site.ts`](lib/site.ts).
+
+---
+
+## Project structure
+
+```
+app/
+  (marketing)/        # Lenis + Navbar + Footer layout
+    page.tsx          # Home (hero, services, projects, stats, process, …)
+    services/ projects/ about/ contact/
+  admin/              # Password-gated dashboard (no smooth-scroll shell)
+    login/  page.tsx  actions.ts
+  api/
+    retell/inbound/   retell/post-call/   toggle/   contact/
+components/
+  layout/ (SmoothScroll, Navbar, Footer)
+  sections/ (Hero, Services, ServiceCard, Projects, Stats, Process, …)
+  ui/ (Button, Reveal, MagneticButton, Marquee, Card)
+  admin/ (AgentToggle, CallTable)
+hooks/ (useReveal, useCountUp)
+lib/ (site, supabase, notify, retell, auth, gsap, utils)
+supabase/schema.sql
+scripts/gen-placeholders.mjs
+```
+
+---
+
+## Deploy (Vercel)
+
+1. Push this repo to GitHub and import it into Vercel.
+2. Add every variable from `.env.example` in **Project → Settings → Environment Variables**.
+3. Deploy, then point your Retell webhooks at the deployed URLs and add your custom domain.
+
+---
+
+## Design tokens
+
+Defined once in [`app/globals.css`](app/globals.css) via Tailwind v4 `@theme` — used as
+utilities like `bg-ink`, `text-hazard`, `border-steel`.
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `ink` | `#0A0A0A` | Background / near-black |
+| `concrete` | `#1A1A1A` | Cards, sections |
+| `steel` | `#2E2E2E` | Borders, dividers |
+| `fog` | `#9A9A9A` | Muted text |
+| `bone` | `#F4F2ED` | Light text |
+| `hazard` | `#FF5C00` | Single high-vis accent |
