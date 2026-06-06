@@ -3,8 +3,6 @@
 /* eslint-disable @next/next/no-img-element -- swappable placeholder project media */
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "@/lib/gsap";
 
 const PROJECTS = [
   {
@@ -40,73 +38,80 @@ const PROJECTS = [
 ];
 
 export default function Projects() {
-  const section = useRef<HTMLElement>(null);
-  const track = useRef<HTMLDivElement>(null);
+  const scroller = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active: false, startX: 0, startLeft: 0 });
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      // Desktop: pin the section and scrub the rail horizontally.
-      mm.add("(min-width: 1024px)", () => {
-        const el = track.current;
-        if (!el) return;
-        const distance = () => el.scrollWidth - window.innerWidth + 80;
-        gsap.to(el, {
-          x: () => -distance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: section.current,
-            start: "top top",
-            end: () => `+=${distance()}`,
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-      });
-    },
-    { scope: section },
-  );
+  // Mouse click-drag to scroll. Touch is left to native overflow scrolling.
+  function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if (e.pointerType !== "mouse") return;
+    const el = scroller.current;
+    if (!el) return;
+    drag.current = { active: true, startX: e.clientX, startLeft: el.scrollLeft };
+    try {
+      el.setPointerCapture(e.pointerId);
+    } catch {
+      /* capture unavailable */
+    }
+  }
+
+  function onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!drag.current.active) return;
+    const el = scroller.current;
+    if (!el) return;
+    el.scrollLeft = drag.current.startLeft - (e.clientX - drag.current.startX);
+  }
+
+  function endDrag(e: React.PointerEvent<HTMLDivElement>) {
+    if (!drag.current.active) return;
+    drag.current.active = false;
+    try {
+      scroller.current?.releasePointerCapture(e.pointerId);
+    } catch {
+      /* pointer already released */
+    }
+  }
 
   return (
-    <section
-      ref={section}
-      className="relative overflow-hidden border-t border-steel bg-concrete"
-    >
-      <div className="no-scrollbar overflow-x-auto py-24 lg:overflow-x-hidden lg:py-0 lg:h-screen lg:flex lg:items-center">
-        <div
-          ref={track}
-          className="flex w-max items-stretch gap-6 px-6 lg:px-10"
-        >
-          {/* Intro panel */}
-          <div className="flex w-[80vw] shrink-0 flex-col justify-center sm:w-[26rem] lg:w-[34rem]">
-            <p className="text-xs uppercase tracking-[0.3em] text-hazard">
-              Selected work
-            </p>
-            <h2 className="mt-4 font-display text-6xl leading-none text-bone sm:text-7xl">
-              Proof in the punch list.
-            </h2>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-fog">
-              A look at recent kitchens, bathrooms, and additions.
-              <span className="hidden lg:inline"> Scroll to move sideways.</span>
-            </p>
-          </div>
+    <section className="border-t border-steel bg-concrete py-20 lg:py-28">
+      <div className="mx-auto mb-10 flex max-w-7xl items-end justify-between gap-6 px-6 lg:px-10">
+        <div>
+          <p className="text-xs uppercase tracking-[0.3em] text-hazard">
+            Selected work
+          </p>
+          <h2 className="mt-4 font-display text-5xl leading-none text-bone sm:text-6xl">
+            Proof in the punch list.
+          </h2>
+        </div>
+        <p className="hidden shrink-0 items-center gap-2 text-xs uppercase tracking-[0.2em] text-fog sm:flex">
+          Drag to explore <span aria-hidden>↔</span>
+        </p>
+      </div>
 
-          {/* Project cards */}
+      {/* Drag-to-scroll rail: mouse-drag on desktop, finger-swipe on touch. */}
+      <div
+        ref={scroller}
+        data-lenis-prevent
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerLeave={endDrag}
+        onPointerCancel={endDrag}
+        className="no-scrollbar cursor-grab overflow-x-auto overscroll-x-contain active:cursor-grabbing"
+      >
+        <div className="flex w-max select-none gap-6 px-6 lg:px-10">
           {PROJECTS.map((p) => (
             <article
               key={p.title}
-              className="group relative w-[80vw] shrink-0 overflow-hidden border border-steel sm:w-[26rem] lg:h-[68vh] lg:w-[30rem]"
+              className="group relative h-[440px] w-[78vw] shrink-0 overflow-hidden border border-steel sm:h-[500px] sm:w-[26rem] lg:w-[30rem]"
             >
               <img
                 src={p.img}
                 alt={p.title}
-                className="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-105 lg:h-full"
+                className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 draggable={false}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6">
                 <p className="text-xs uppercase tracking-[0.18em] text-hazard">
                   {p.category}
                 </p>
