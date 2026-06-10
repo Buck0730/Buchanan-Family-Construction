@@ -119,21 +119,6 @@ export function servicePhotos(service: Service): string[] {
   return service.photos;
 }
 
-export type Stat = {
-  value: number;
-  suffix?: string;
-  prefix?: string;
-  decimals?: number;
-  label: string;
-};
-
-export const STATS: Stat[] = [
-  { value: 27, suffix: "+", label: "Years building" },
-  { value: 480, suffix: "+", label: "Projects completed" },
-  { value: 100, suffix: "%", label: "Licensed & insured" },
-  { value: 4.9, suffix: "/5", decimals: 1, label: "Average client rating" },
-];
-
 export type ProcessStep = {
   index: string;
   title: string;

@@ -1,6 +1,5 @@
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
-import Stats from "@/components/sections/Stats";
 import Projects from "@/components/sections/Projects";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
@@ -15,6 +14,8 @@ export default function HomePage() {
         items={[
           "Kitchens",
           "Bathrooms",
+          "Decks",
+          "Basements",
           "Additions",
           "Licensed & Insured",
           "Family-Owned",
@@ -23,7 +24,6 @@ export default function HomePage() {
         ]}
       />
       <Services />
-      <Stats />
       <Projects />
       <Process />
       <Testimonials />

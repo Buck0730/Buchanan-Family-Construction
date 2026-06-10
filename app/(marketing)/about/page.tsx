@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/ui/Reveal";
-import Stats from "@/components/sections/Stats";
 import CTA from "@/components/sections/CTA";
 import { COMPANY } from "@/lib/site";
 
@@ -71,9 +70,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Stats />
-
-      <section className="border-t border-steel px-6 py-20 lg:px-10 lg:py-28">
+      <section className="px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-hazard">
