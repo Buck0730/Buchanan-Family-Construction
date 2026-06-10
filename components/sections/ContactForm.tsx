@@ -92,7 +92,7 @@ export default function ContactForm() {
             name="phone"
             type="tel"
             className={FIELD}
-            placeholder="(215) 555-0142"
+            placeholder="(412) 555-0142"
           />
         </div>
       </div>

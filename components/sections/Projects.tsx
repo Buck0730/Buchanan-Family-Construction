@@ -6,34 +6,34 @@ import { useRef } from "react";
 
 const PROJECTS = [
   {
-    img: "/images/projects/kitchens/kitchen-1.svg",
-    title: "Galley to open-concept",
-    category: "Kitchen · Doylestown",
+    img: "/images/projects/bathrooms/bathroom-1.jpg",
+    title: "Black-tile bath rebuild",
+    category: "Bathroom · Pittsburgh",
   },
   {
-    img: "/images/projects/bathrooms/bathroom-1.svg",
-    title: "Curbless wet room",
-    category: "Bathroom · Ardmore",
+    img: "/images/projects/bathrooms/bathroom-2.jpg",
+    title: "Marble tub & shower suite",
+    category: "Bathroom · Pittsburgh",
   },
   {
-    img: "/images/projects/additions/addition-1.svg",
-    title: "Two-story rear addition",
-    category: "Addition · Newtown",
+    img: "/images/projects/bathrooms/bathroom-3.jpg",
+    title: "Grid-glass walk-in shower",
+    category: "Bathroom · Pittsburgh",
   },
   {
-    img: "/images/projects/kitchens/kitchen-3.svg",
-    title: "Chef's island build",
-    category: "Kitchen · Wayne",
+    img: "/images/projects/bathrooms/bathroom-4.jpg",
+    title: "Window-wrapped soaking tub",
+    category: "Bathroom · Pittsburgh",
   },
   {
-    img: "/images/projects/bathrooms/bathroom-3.svg",
-    title: "Heated marble bath",
-    category: "Bathroom · Bryn Mawr",
+    img: "/images/projects/bathrooms/bathroom-5.jpg",
+    title: "Matte black rain shower",
+    category: "Bathroom · Pittsburgh",
   },
   {
-    img: "/images/projects/additions/addition-3.svg",
-    title: "Sunroom + mudroom",
-    category: "Addition · Malvern",
+    img: "/images/projects/bathrooms/bathroom-14.jpg",
+    title: "Marble subway & hex bath",
+    category: "Bathroom · Pittsburgh",
   },
 ];
 

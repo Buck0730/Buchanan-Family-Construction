@@ -9,7 +9,8 @@ const MAX_TILT = 14; // degrees
 const SLIDE_MS = 15000; // 15s per photo
 
 export default function ServiceCard({ service }: { service: Service }) {
-  const photos = servicePhotos(service);
+  // Cap the flip-side slideshow; the full set lives on /projects.
+  const photos = servicePhotos(service).slice(0, 6);
 
   const tiltRef = useRef<HTMLDivElement>(null);
   const [flipped, setFlipped] = useState(false);
@@ -122,7 +123,7 @@ export default function ServiceCard({ service }: { service: Service }) {
             </div>
 
             <div className="flex items-center justify-between border-t border-steel pt-5 text-xs uppercase tracking-[0.18em] text-fog">
-              <span>{photos.length} projects</span>
+              <span>{photos.length} photos</span>
               <span className="flex items-center gap-2 text-bone transition-colors group-hover:text-hazard">
                 View work
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">

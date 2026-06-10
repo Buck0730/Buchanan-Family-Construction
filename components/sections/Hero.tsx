@@ -92,8 +92,9 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <p className="hero-fade max-w-md text-base leading-relaxed text-fog sm:text-lg">
-            Family-owned home remodeling — kitchens, bathrooms, and additions,
-            built by a crew that treats your house like their own.
+            Family-owned home remodeling — kitchens, bathrooms, decks,
+            basements, and additions, built by a crew that treats your house
+            like their own.
           </p>
 
           <div className="hero-fade flex flex-wrap gap-4">

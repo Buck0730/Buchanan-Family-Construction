@@ -2,12 +2,12 @@
 // Edit here and every section/page updates.
 
 export const COMPANY = {
-  name: "Buchanan Family Construction",
+  name: "Buchanan Home Remodeling",
   shortName: "Buchanan",
-  phoneDisplay: "(215) 555-0142",
-  phoneE164: "+12155550142",
-  email: "build@buchananfamilyconstruction.com",
-  area: "Greater Philadelphia, PA",
+  phoneDisplay: "(412) 498-2865",
+  phoneE164: "+14124982865",
+  email: "build@buchananhomeremodeling.com",
+  area: "Greater Pittsburgh, PA",
   hours: "Mon–Fri · 7am–6pm",
   license: "PA HIC #PA000000",
   established: 1998,
@@ -20,9 +20,22 @@ export type Service = {
   tagline: string;
   description: string;
   features: string[];
-  /** filename stem for photos, e.g. "kitchen" -> kitchen-1.svg */
-  photoPrefix: string;
+  /** photo paths under /public — first four show on the services page */
+  photos: string[];
 };
+
+/** Real project photography (bathrooms shot so far; other trades pending). */
+const BATHROOM_PHOTOS = Array.from(
+  { length: 18 },
+  (_, i) => `/images/projects/bathrooms/bathroom-${i + 1}.jpg`,
+);
+
+function placeholderPhotos(slug: string, stem: string): string[] {
+  return Array.from(
+    { length: 4 },
+    (_, i) => `/images/projects/${slug}/${stem}-${i + 1}.svg`,
+  );
+}
 
 export const SERVICES: Service[] = [
   {
@@ -38,7 +51,7 @@ export const SERVICES: Service[] = [
       "Islands, lighting & ventilation",
       "Walls-out layout reworks",
     ],
-    photoPrefix: "kitchen",
+    photos: placeholderPhotos("kitchens", "kitchen"),
   },
   {
     slug: "bathrooms",
@@ -53,11 +66,41 @@ export const SERVICES: Service[] = [
       "Custom vanities & storage",
       "Full waterproofing systems",
     ],
-    photoPrefix: "bathroom",
+    photos: BATHROOM_PHOTOS,
+  },
+  {
+    slug: "decks",
+    index: "03",
+    title: "Decks",
+    tagline: "Outdoor living, built solid.",
+    description:
+      "Decks and outdoor spaces framed straight, flashed right, and finished to handle Pittsburgh weather year after year.",
+    features: [
+      "Composite & pressure-treated builds",
+      "Railings, stairs & lighting",
+      "Covered porches & pergolas",
+      "Tear-offs & rebuilds",
+    ],
+    photos: placeholderPhotos("decks", "deck"),
+  },
+  {
+    slug: "basements",
+    index: "04",
+    title: "Basements",
+    tagline: "Square footage you already own.",
+    description:
+      "Finished basements that feel like part of the house — dry, warm, and ready for movie nights, home gyms, or guests.",
+    features: [
+      "Full finishing & framing",
+      "Moisture control & insulation",
+      "Home theaters & bars",
+      "Egress windows & bathrooms",
+    ],
+    photos: placeholderPhotos("basements", "basement"),
   },
   {
     slug: "additions",
-    index: "03",
+    index: "05",
     title: "Additions",
     tagline: "More house, seamlessly.",
     description:
@@ -68,15 +111,12 @@ export const SERVICES: Service[] = [
       "Garages & sunrooms",
       "Permits & structural engineering",
     ],
-    photoPrefix: "addition",
+    photos: placeholderPhotos("additions", "addition"),
   },
 ];
 
 export function servicePhotos(service: Service): string[] {
-  return Array.from(
-    { length: 4 },
-    (_, i) => `/images/projects/${service.slug}/${service.photoPrefix}-${i + 1}.svg`,
-  );
+  return service.photos;
 }
 
 export type Stat = {
@@ -139,21 +179,21 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       "They tore our kitchen down to the studs and handed it back better than we pictured. Crew showed up on time every single day and cleaned up before they left.",
     name: "Dana & Mark R.",
-    location: "Doylestown, PA",
+    location: "Wexford, PA",
     project: "Kitchen remodel",
   },
   {
     quote:
       "The quote was the price. No surprise change orders, no games. The tilework in our master bath is dead straight — you can tell these people care.",
     name: "Priya S.",
-    location: "Ardmore, PA",
+    location: "Mt. Lebanon, PA",
     project: "Primary bathroom",
   },
   {
     quote:
       "Our addition ties into the original house so cleanly that guests can't tell where the old ends and the new begins. Exactly what we hoped for.",
     name: "The Calloways",
-    location: "Newtown, PA",
+    location: "Cranberry Township, PA",
     project: "Two-story addition",
   },
 ];

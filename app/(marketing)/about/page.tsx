@@ -7,7 +7,7 @@ import { COMPANY } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Buchanan Family Construction is a family-owned remodeling company serving Greater Philadelphia since 1998.",
+    "Buchanan Home Remodeling is a family-owned remodeling company serving Greater Pittsburgh since 1998.",
 };
 
 const VALUES = [
@@ -53,7 +53,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal className="space-y-6 text-lg leading-relaxed text-fog lg:col-span-7">
             <p>
-              Buchanan Family Construction started with one truck, one toolbox,
+              Buchanan Home Remodeling started with one truck, one toolbox,
               and a simple promise: do the work right and stand behind it. Two
               decades and hundreds of homes later, that hasn&apos;t changed.
             </p>

@@ -5,7 +5,7 @@ import { COMPANY } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get a free, no-pressure remodeling estimate from Buchanan Family Construction.",
+    "Get a free, no-pressure remodeling estimate from Buchanan Home Remodeling.",
 };
 
 export default function ContactPage() {

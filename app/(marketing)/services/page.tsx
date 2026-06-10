@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Kitchens, bathrooms, and home additions — full-scope remodeling by Buchanan Family Construction.",
+    "Kitchens, bathrooms, decks, basements, and home additions — full-scope remodeling by Buchanan Home Remodeling.",
 };
 
 export default function ServicesPage() {
@@ -22,11 +22,11 @@ export default function ServicesPage() {
             Services
           </p>
           <h1 className="mt-5 max-w-4xl font-display text-6xl leading-[0.9] text-bone sm:text-7xl lg:text-8xl">
-            We go deep on three things.
+            Built for the whole house.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-fog">
-            No jacks-of-all-trades. Just kitchens, bathrooms, and additions —
-            scoped clearly, priced honestly, and built by one dedicated crew.
+            Kitchens, bathrooms, decks, basements, and additions — scoped
+            clearly, priced honestly, and built by one dedicated crew.
           </p>
         </div>
       </header>
@@ -44,7 +44,7 @@ export default function ServicesPage() {
               {/* Photo grid */}
               <Reveal className={cn(flip && "lg:order-2")}>
                 <div className="grid grid-cols-2 gap-3">
-                  {photos.map((src, n) => (
+                  {photos.slice(0, 4).map((src, n) => (
                     <img
                       key={src}
                       src={src}

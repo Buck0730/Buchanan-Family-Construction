@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { COMPANY } from "@/lib/site";
 
-const PHONE_DISPLAY = "(215) 555-0142";
-const PHONE_E164 = "+12155550142";
-const EMAIL = "build@buchananfamilyconstruction.com";
+const PHONE_DISPLAY = COMPANY.phoneDisplay;
+const PHONE_E164 = COMPANY.phoneE164;
+const EMAIL = COMPANY.email;
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -37,8 +38,9 @@ export default function Footer() {
             </span>
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-fog">
-            Family-owned home remodeling. Kitchens, bathrooms, and additions
-            built with craft, grit, and a straight answer.
+            Family-owned home remodeling. Kitchens, bathrooms, decks,
+            basements, and additions built with craft, grit, and a straight
+            answer.
           </p>
         </div>
 
@@ -58,6 +60,8 @@ export default function Footer() {
           links={[
             { href: "/services#kitchens", label: "Kitchens" },
             { href: "/services#bathrooms", label: "Bathrooms" },
+            { href: "/services#decks", label: "Decks" },
+            { href: "/services#basements", label: "Basements" },
             { href: "/services#additions", label: "Additions" },
           ]}
         />
@@ -77,7 +81,7 @@ export default function Footer() {
                 {EMAIL}
               </a>
             </li>
-            <li className="text-fog">Serving Greater Philadelphia, PA</li>
+            <li className="text-fog">Serving {COMPANY.area}</li>
             <li className="text-fog">Mon–Fri · 7am–6pm</li>
           </ul>
         </div>
@@ -86,7 +90,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-steel">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs uppercase tracking-[0.16em] text-fog sm:flex-row lg:px-10">
-          <p>© {year} Buchanan Family Construction</p>
+          <p>© {year} {COMPANY.name}</p>
           <p>PA HIC #PA000000 · Licensed &amp; Insured</p>
         </div>
       </div>

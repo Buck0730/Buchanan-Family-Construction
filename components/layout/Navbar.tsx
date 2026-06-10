@@ -23,7 +23,7 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
       href="/"
       onClick={onClick}
       className="flex items-center gap-3"
-      aria-label="Buchanan Family Construction — home"
+      aria-label="Buchanan Home Remodeling — home"
     >
       <span className="grid h-9 w-9 place-items-center bg-hazard font-display text-xl text-ink">
         B
@@ -33,7 +33,7 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
           Buchanan
         </span>
         <span className="block text-[0.6rem] uppercase tracking-[0.32em] text-fog">
-          Family Construction
+          Home Remodeling
         </span>
       </span>
     </Link>

@@ -1,11 +1,11 @@
-# Buchanan Family Construction
+﻿# Buchanan Home Remodeling
 
 A bold, industrial marketing website **and** an AI phone-agent admin dashboard, in one Next.js app.
 
-- **Marketing site** — home, services, projects, about, and a lead-capture contact form, with Apple-style smooth scrolling, scroll-driven reveals, pinned/scrubbed sections, count-up stats, magnetic buttons, and 3D flip-to-slideshow service cards.
-- **AI phone agent + admin** — a password-gated dashboard with a big ON/OFF toggle. When **ON**, the phone agent (Retell) greets callers, takes a message, and texts/emails the owner a summary. When **OFF**, calls forward straight to the owner's cell. Every AI-handled call is logged.
+- **Marketing site** â€” home, services, projects, about, and a lead-capture contact form, with Apple-style smooth scrolling, scroll-driven reveals, pinned/scrubbed sections, count-up stats, magnetic buttons, and 3D flip-to-slideshow service cards.
+- **AI phone agent + admin** â€” a password-gated dashboard with a big ON/OFF toggle. When **ON**, the phone agent (Retell) greets callers, takes a message, and texts/emails the owner a summary. When **OFF**, calls forward straight to the owner's cell. Every AI-handled call is logged.
 
-The voice platform (Retell) handles real-time audio, so the backend is just plain HTTP webhooks — everything lives in this one app. No separate server.
+The voice platform (Retell) handles real-time audio, so the backend is just plain HTTP webhooks â€” everything lives in this one app. No separate server.
 
 ---
 
@@ -61,7 +61,7 @@ All variables live in `.env.example`. Copy it to `.env.local` and fill in what y
 ADMIN_PASSWORD=choose-a-strong-password
 ```
 
-Visit **`/admin`** → you'll be redirected to `/admin/login`. Sign in with `ADMIN_PASSWORD`. The session is an httpOnly cookie (sha256 of the password, never the raw value). This is the minimum needed to use the toggle UI.
+Visit **`/admin`** â†’ you'll be redirected to `/admin/login`. Sign in with `ADMIN_PASSWORD`. The session is an httpOnly cookie (sha256 of the password, never the raw value). This is the minimum needed to use the toggle UI.
 
 ### 2. Supabase (toggle state + call log)
 
@@ -78,19 +78,19 @@ SUPABASE_SERVICE_ROLE_KEY=...
 
 All database access happens server-side with the service-role key (which bypasses RLS), so the public anon key can't read your call log.
 
-### 3. Notifications — Twilio (SMS) + Resend (email)
+### 3. Notifications â€” Twilio (SMS) + Resend (email)
 
 ```
 TWILIO_ACCOUNT_SID=...
 TWILIO_AUTH_TOKEN=...
 TWILIO_FROM_NUMBER=+1...
 RESEND_API_KEY=...
-RESEND_FROM_EMAIL=Buchanan Family Construction <calls@yourdomain.com>
+RESEND_FROM_EMAIL=Buchanan Home Remodeling <calls@yourdomain.com>
 NOTIFY_EMAIL=owner@email.com
 NOTIFY_PHONE=+1...
 ```
 
-Both are optional and degrade gracefully — if a service isn't configured, that channel is simply skipped (the app never crashes).
+Both are optional and degrade gracefully â€” if a service isn't configured, that channel is simply skipped (the app never crashes).
 
 ### 4. Retell AI (the phone agent)
 
@@ -107,16 +107,16 @@ RETELL_WEBHOOK_SECRET=optional-shared-secret
 
 **How the toggle drives the call:** `/api/retell/inbound` reads `agent_settings.is_active` and responds with dynamic variables:
 
-- `agent_active` — `"true"` / `"false"`
-- `forward_number` — the owner's cell
-- `callback_timeframe` — e.g. `"24 hours"`
+- `agent_active` â€” `"true"` / `"false"`
+- `forward_number` â€” the owner's cell
+- `callback_timeframe` â€” e.g. `"24 hours"`
 
 In your Retell agent's prompt/flow, branch on these:
 
-- when `{{agent_active}}` is **false** → transfer the call to `{{forward_number}}`
-- when **true** → greet the caller, take a brief message, promise a callback within `{{callback_timeframe}}`, and state the call is recorded.
+- when `{{agent_active}}` is **false** â†’ transfer the call to `{{forward_number}}`
+- when **true** â†’ greet the caller, take a brief message, promise a callback within `{{callback_timeframe}}`, and state the call is recorded.
 
-> **Verify Retell's field names.** Retell is the source of truth for exact inbound/post-call webhook shapes. The handlers in [`lib/retell.ts`](lib/retell.ts) are written defensively and commented — confirm them against current Retell docs when you wire the live agent.
+> **Verify Retell's field names.** Retell is the source of truth for exact inbound/post-call webhook shapes. The handlers in [`lib/retell.ts`](lib/retell.ts) are written defensively and commented â€” confirm them against current Retell docs when you wire the live agent.
 
 > **Legal (PA):** Pennsylvania is a **two-party consent** state. Keep the "this call is recorded" line in the agent's greeting.
 
@@ -136,7 +136,7 @@ Photo paths are centralized in [`lib/site.ts`](lib/site.ts).
 ```
 app/
   (marketing)/        # Lenis + Navbar + Footer layout
-    page.tsx          # Home (hero, services, projects, stats, process, …)
+    page.tsx          # Home (hero, services, projects, stats, process, â€¦)
     services/ projects/ about/ contact/
   admin/              # Password-gated dashboard (no smooth-scroll shell)
     login/  page.tsx  actions.ts
@@ -144,7 +144,7 @@ app/
     retell/inbound/   retell/post-call/   toggle/   contact/
 components/
   layout/ (SmoothScroll, Navbar, Footer)
-  sections/ (Hero, Services, ServiceCard, Projects, Stats, Process, …)
+  sections/ (Hero, Services, ServiceCard, Projects, Stats, Process, â€¦)
   ui/ (Button, Reveal, MagneticButton, Marquee, Card)
   admin/ (AgentToggle, CallTable)
 hooks/ (useReveal, useCountUp)
@@ -158,14 +158,14 @@ scripts/gen-placeholders.mjs
 ## Deploy (Vercel)
 
 1. Push this repo to GitHub and import it into Vercel.
-2. Add every variable from `.env.example` in **Project → Settings → Environment Variables**.
+2. Add every variable from `.env.example` in **Project â†’ Settings â†’ Environment Variables**.
 3. Deploy, then point your Retell webhooks at the deployed URLs and add your custom domain.
 
 ---
 
 ## Design tokens
 
-Defined once in [`app/globals.css`](app/globals.css) via Tailwind v4 `@theme` — used as
+Defined once in [`app/globals.css`](app/globals.css) via Tailwind v4 `@theme` â€” used as
 utilities like `bg-ink`, `text-hazard`, `border-steel`.
 
 | Token | Value | Use |
@@ -175,4 +175,4 @@ utilities like `bg-ink`, `text-hazard`, `border-steel`.
 | `steel` | `#2E2E2E` | Borders, dividers |
 | `fog` | `#9A9A9A` | Muted text |
 | `bone` | `#F4F2ED` | Light text |
-| `hazard` | `#FF5C00` | Single high-vis accent |
+| `hazard` | `#00843D` | Single high-vis accent |

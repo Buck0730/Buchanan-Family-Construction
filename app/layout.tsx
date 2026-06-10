@@ -18,25 +18,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://buchananfamilyconstruction.com"),
+  metadataBase: new URL("https://buchananhomeremodeling.com"),
   title: {
-    default: "Buchanan Family Construction — Built Right, Built to Last",
-    template: "%s · Buchanan Family Construction",
+    default: "Buchanan Home Remodeling — Built Right, Built to Last",
+    template: "%s · Buchanan Home Remodeling",
   },
   description:
-    "Family-owned home remodeling — kitchens, bathrooms, and additions built with craft, grit, and a straight answer. Serving Pennsylvania homeowners.",
+    "Family-owned home remodeling — kitchens, bathrooms, decks, basements, and additions built with craft, grit, and a straight answer. Serving Pennsylvania homeowners.",
   keywords: [
     "home remodeling",
     "kitchen remodel",
     "bathroom remodel",
+    "deck builder",
+    "basement finishing",
     "home additions",
     "general contractor",
+    "Pittsburgh",
     "Pennsylvania",
   ],
   openGraph: {
-    title: "Buchanan Family Construction",
+    title: "Buchanan Home Remodeling",
     description:
-      "Family-owned home remodeling — kitchens, bathrooms, and additions built to last.",
+      "Family-owned home remodeling — kitchens, bathrooms, decks, basements, and additions built to last.",
     type: "website",
   },
 };

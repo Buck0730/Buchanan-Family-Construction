@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
- * Buchanan Family Construction — bold / industrial design system
+ * Buchanan Home Remodeling — bold / industrial design system
  * Tailwind v4 CSS-first config. Tokens defined here become utilities
  * automatically: bg-ink, text-hazard, border-steel, font-display, etc.
  * ------------------------------------------------------------------ */
@@ -13,7 +13,7 @@
   --color-steel: #2e2e2e; /* borders, dividers */
   --color-fog: #9a9a9a; /* muted text */
   --color-bone: #f4f2ed; /* light text / inverted sections */
-  --color-hazard: #ff5c00; /* single high-vis accent */
+  --color-hazard: #00843d; /* single high-vis accent — Eagles kelly green (Pantone 348) */
   --color-hazard-yellow: #ffc400; /* alt accent (swap if preferred) */
 
   /* Fonts (CSS variables injected by next/font in layout.tsx) */
