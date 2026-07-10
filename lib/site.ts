@@ -67,11 +67,36 @@ export const JOBS: Job[] = [
     },
   },
   {
+    slug: "wraparound-composite-deck",
+    service: "decks",
+    title: "Wraparound composite deck",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("decks", "wraparound-composite-deck", 5),
+  },
+  {
+    slug: "built-in-storage",
+    service: "cabinets",
+    title: "Custom built-in cabinets",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("cabinets", "built-in-storage", 2),
+    captions: {
+      "/images/projects/cabinets/built-in-storage/photo-1.jpg":
+        "Built from scratch by our team — cabinets, shiplap, and a lift-top storage bench.",
+    },
+  },
+  {
     slug: "marble-attic-bath",
     service: "bathrooms",
     title: "Marble attic bath",
     location: "Greater Philadelphia",
     photos: jobPhotos("bathrooms", "marble-attic-bath", 7),
+  },
+  {
+    slug: "gray-composite-porch",
+    service: "decks",
+    title: "Composite porch & steps",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("decks", "gray-composite-porch", 3),
   },
   {
     slug: "charcoal-marble-bath",

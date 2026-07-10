@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { jobsForService } from "@/lib/site";
+import { JOBS } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import CTA from "@/components/sections/CTA";
 
@@ -29,8 +29,6 @@ const VIDEOS = [
   },
 ];
 
-// Completed jobs, each shown as its own gallery.
-const JOBS = jobsForService("bathrooms");
 
 export default function ProjectsPage() {
   return (
