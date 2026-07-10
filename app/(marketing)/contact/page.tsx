@@ -17,7 +17,7 @@ export default function ContactPage() {
           <p className="text-xs uppercase tracking-[0.3em] text-hazard">
             Get a quote
           </p>
-          <h1 className="mt-5 font-display text-6xl leading-[0.9] text-bone sm:text-7xl">
+          <h1 className="mt-5 font-display text-6xl leading-[0.9] text-ink sm:text-7xl">
             Let&apos;s talk about your project.
           </h1>
           <p className="mt-6 max-w-md leading-relaxed text-fog">
@@ -29,7 +29,7 @@ export default function ContactPage() {
             <ContactRow label="Call">
               <a
                 href={`tel:${COMPANY.phoneE164}`}
-                className="text-bone hover:text-hazard"
+                className="text-ink hover:text-hazard"
               >
                 {COMPANY.phoneDisplay}
               </a>
@@ -37,16 +37,16 @@ export default function ContactPage() {
             <ContactRow label="Email">
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="break-all text-bone hover:text-hazard"
+                className="break-all text-ink hover:text-hazard"
               >
                 {COMPANY.email}
               </a>
             </ContactRow>
             <ContactRow label="Area">
-              <span className="text-bone">{COMPANY.area}</span>
+              <span className="text-ink">{COMPANY.area}</span>
             </ContactRow>
             <ContactRow label="Hours">
-              <span className="text-bone">{COMPANY.hours}</span>
+              <span className="text-ink">{COMPANY.hours}</span>
             </ContactRow>
           </dl>
 
@@ -58,7 +58,7 @@ export default function ContactPage() {
         </div>
 
         {/* Right: form */}
-        <div className="border border-steel bg-concrete/40 p-8 lg:p-10">
+        <div className="border border-steel bg-mist p-8 lg:p-10">
           <ContactForm />
         </div>
       </div>

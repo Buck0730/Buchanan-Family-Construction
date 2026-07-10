@@ -1,20 +1,23 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
- * Buchanan Home Remodeling — bold / industrial design system
+ * Buchanan Home Remodeling — light design system
  * Tailwind v4 CSS-first config. Tokens defined here become utilities
- * automatically: bg-ink, text-hazard, border-steel, font-display, etc.
+ * automatically: bg-cloud, text-hazard, border-steel, font-display, etc.
+ * Main colors: Kelly green (#00843d) + light gray.
  * ------------------------------------------------------------------ */
 
 @theme {
-  /* Palette */
-  --color-ink: #0a0a0a; /* primary near-black background */
-  --color-concrete: #1a1a1a; /* cards, raised sections */
-  --color-steel: #2e2e2e; /* borders, dividers */
-  --color-fog: #9a9a9a; /* muted text */
-  --color-bone: #f4f2ed; /* light text / inverted sections */
-  --color-hazard: #00843d; /* single high-vis accent — Eagles kelly green (Pantone 348) */
-  --color-hazard-yellow: #ffc400; /* alt accent (swap if preferred) */
+  /* Palette — light theme */
+  --color-cloud: #f4f5f4; /* primary light-gray page background */
+  --color-mist: #eceeec; /* alternating light-gray sections */
+  --color-concrete: #ffffff; /* cards, raised surfaces */
+  --color-steel: #dbe0dc; /* borders, dividers (light) */
+  --color-fog: #566159; /* muted / secondary text */
+  --color-ink: #16211b; /* primary dark text, dark surfaces & image overlays */
+  --color-bone: #ffffff; /* text on dark / green surfaces */
+  --color-hazard: #00843d; /* Kelly green — primary accent (Pantone 348) */
+  --color-hazard-dark: #006a31; /* green hover / pressed */
 
   /* Fonts (CSS variables injected by next/font in layout.tsx) */
   --font-display: var(--font-anton), "Arial Narrow", sans-serif;
@@ -52,8 +55,23 @@
 
 @layer base {
   :root {
-    --background: var(--color-ink);
-    --foreground: var(--color-bone);
+    --background: var(--color-cloud);
+    --foreground: var(--color-ink);
+  }
+
+  /* Dark-theme scope for the internal /admin dashboard — restores the
+   * original dark token values so admin utilities stay readable while the
+   * marketing site runs light. */
+  .theme-dark {
+    --color-cloud: #0a0a0a;
+    --color-mist: #141414;
+    --color-concrete: #1a1a1a;
+    --color-steel: #2e2e2e;
+    --color-fog: #9a9a9a;
+    --color-ink: #0a0a0a;
+    --color-bone: #f4f2ed;
+    --background: #0a0a0a;
+    --foreground: #f4f2ed;
   }
 
   * {
@@ -75,7 +93,7 @@
 
   ::selection {
     background: var(--color-hazard);
-    color: var(--color-ink);
+    color: var(--color-bone);
   }
 
   /* Headlines: heavy condensed uppercase display face */
@@ -94,7 +112,7 @@
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-ink);
+    background: var(--color-mist);
   }
   ::-webkit-scrollbar-thumb {
     background: var(--color-steel);
@@ -145,8 +163,8 @@
   /* Subtle blueprint grid background */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgba(46, 46, 46, 0.35) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(46, 46, 46, 0.35) 1px, transparent 1px);
+      linear-gradient(to right, rgba(22, 33, 27, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(22, 33, 27, 0.06) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 }

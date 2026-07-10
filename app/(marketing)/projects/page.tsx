@@ -1,43 +1,36 @@
 import type { Metadata } from "next";
-import { SERVICES, servicePhotos } from "@/lib/site";
+import { jobsForService } from "@/lib/site";
 import Reveal from "@/components/ui/Reveal";
 import CTA from "@/components/sections/CTA";
 
 /* eslint-disable @next/next/no-img-element -- static gallery media */
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Our Work",
   description:
-    "A gallery of recent kitchen, bathroom, deck, basement, and addition remodels by Buchanan Home Remodeling.",
+    "A gallery of recent remodels by Buchanan Home Remodeling — real photos from real job sites.",
 };
 
 const VIDEOS = [
   {
     src: "/videos/bathroom-tour-1.mp4",
     poster: "/videos/bathroom-tour-1-poster.jpg",
-    title: "Black-tile bathroom walkthrough",
+    title: "Jobsite walkthrough",
   },
   {
     src: "/videos/bathroom-tour-2.mp4",
     poster: "/videos/bathroom-tour-2-poster.jpg",
-    title: "Shower & vanity detail",
+    title: "Finish & detail work",
   },
   {
     src: "/videos/bathroom-tour-3.mp4",
     poster: "/videos/bathroom-tour-3-poster.jpg",
-    title: "Marble bathroom walkthrough",
+    title: "Jobsite walkthrough",
   },
 ];
 
-// Real photography first (jpg), placeholder art (svg) after. Four per service.
-const GALLERY = SERVICES.flatMap((service) =>
-  servicePhotos(service).slice(0, 4).map((img, i) => ({
-    img,
-    service: service.title,
-    slug: service.slug,
-    n: i + 1,
-  })),
-).sort((a, b) => Number(b.img.endsWith(".jpg")) - Number(a.img.endsWith(".jpg")));
+// Completed jobs, each shown as its own gallery.
+const JOBS = jobsForService("bathrooms");
 
 export default function ProjectsPage() {
   return (
@@ -47,38 +40,68 @@ export default function ProjectsPage() {
           <p className="text-xs uppercase tracking-[0.3em] text-hazard">
             Portfolio
           </p>
-          <h1 className="mt-5 max-w-4xl font-display text-6xl leading-[0.9] text-bone sm:text-7xl lg:text-8xl">
-            The work speaks first.
+          <h1 className="mt-5 max-w-4xl font-display text-6xl leading-[0.9] text-ink sm:text-7xl lg:text-8xl">
+            The work.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-fog">
-            Real photos from real job sites — more galleries drop in as each
-            project wraps.
+            Real photos from real job sites. New galleries get added as
+            projects wrap up.
           </p>
         </div>
       </header>
 
-      <section className="px-6 py-16 lg:px-10 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {GALLERY.map((item, i) => (
-            <Reveal key={item.img} delay={(i % 3) * 0.06}>
-              <figure className="group relative overflow-hidden border border-steel">
-                <img
-                  src={item.img}
-                  alt={`${item.service} project ${item.n}`}
-                  loading="lazy"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  draggable={false}
-                />
-                <figcaption className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/90 via-ink/10 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="text-xs uppercase tracking-[0.18em] text-hazard">
-                    {item.service}
-                  </span>
-                </figcaption>
-              </figure>
+      {/* One gallery per completed job */}
+      {JOBS.map((job) => (
+        <section
+          key={job.slug}
+          className="border-b border-steel px-6 py-16 lg:px-10 lg:py-24"
+        >
+          <div className="mx-auto max-w-7xl">
+            <Reveal className="mb-8 flex items-end justify-between gap-6">
+              <h2 className="font-display text-4xl text-ink sm:text-5xl">
+                {job.title}
+              </h2>
+              <p className="hidden shrink-0 text-xs uppercase tracking-[0.2em] text-fog sm:block">
+                {job.location}
+              </p>
             </Reveal>
-          ))}
-        </div>
-      </section>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {job.photos.map((img, i) => {
+                const caption = job.captions?.[img];
+                return (
+                  <Reveal key={img} delay={(i % 3) * 0.06}>
+                    <figure className="group overflow-hidden border border-steel bg-concrete">
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={img}
+                          alt={
+                            caption
+                              ? `${job.title} — handmade custom cabinet`
+                              : `${job.title} — photo ${i + 1}`
+                          }
+                          loading="lazy"
+                          className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          draggable={false}
+                        />
+                      </div>
+                      {caption && (
+                        <figcaption className="border-t border-steel px-4 py-4">
+                          <p className="text-[0.65rem] uppercase tracking-[0.22em] text-hazard">
+                            Custom cabinetry
+                          </p>
+                          <p className="mt-1.5 text-sm leading-relaxed text-ink">
+                            {caption}
+                          </p>
+                        </figcaption>
+                      )}
+                    </figure>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      ))}
 
       {/* Video walkthroughs */}
       <section className="border-t border-steel px-6 py-16 lg:px-10 lg:py-24">
@@ -87,13 +110,13 @@ export default function ProjectsPage() {
             <p className="text-xs uppercase tracking-[0.3em] text-hazard">
               On site
             </p>
-            <h2 className="mt-4 font-display text-5xl text-bone sm:text-6xl">
-              Walk the finished job.
+            <h2 className="mt-4 font-display text-5xl text-ink sm:text-6xl">
+              Walkthroughs.
             </h2>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {VIDEOS.map((video, i) => (
-              <Reveal key={video.src} delay={i * 0.06}>
+              <Reveal key={`${video.src}-${i}`} delay={i * 0.06}>
                 <figure className="border border-steel bg-concrete">
                   <video
                     src={video.src}

@@ -6,7 +6,7 @@ import { COMPANY } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Buchanan Home Remodeling is a family-owned remodeling company serving Greater Pittsburgh since 1998.",
+    "Buchanan Home Remodeling is a young, family-owned remodeling company based in Upper Darby, PA, serving the Greater Philadelphia area.",
 };
 
 const VALUES = [
@@ -16,15 +16,15 @@ const VALUES = [
   },
   {
     title: "The quote is the price",
-    body: "We scope it right the first time so the number you sign is the number you pay. Surprises are for birthdays.",
+    body: "We scope it right the first time so the number you sign is the number you pay. No surprise change orders.",
   },
   {
-    title: "We treat your house like ours",
+    title: "A clean site, every day",
     body: "Floors covered, site swept, dust contained. You'll still be living there, and we build like we know it.",
   },
   {
     title: "Built to code, built to last",
-    body: "Permits pulled, inspections passed, materials that hold up. Craft you won't see and will never have to think about.",
+    body: "Permits pulled, inspections passed, and materials that hold up for the long haul.",
   },
 ];
 
@@ -36,8 +36,8 @@ export default function AboutPage() {
           <p className="text-xs uppercase tracking-[0.3em] text-hazard">
             Our story
           </p>
-          <h1 className="mt-5 max-w-4xl font-display text-6xl leading-[0.9] text-bone sm:text-7xl lg:text-8xl">
-            A family name on every job.
+          <h1 className="mt-5 max-w-4xl font-display text-6xl leading-[0.9] text-ink sm:text-7xl lg:text-8xl">
+            Our name is on the work.
           </h1>
         </div>
       </header>
@@ -45,22 +45,21 @@ export default function AboutPage() {
       <section className="border-b border-steel px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
-            <h2 className="font-display text-4xl leading-tight text-bone sm:text-5xl">
-              Since {COMPANY.established}, building rooms families actually live
-              in.
+            <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
+              Family-owned. One small crew. Careful work.
             </h2>
           </Reveal>
           <Reveal className="space-y-6 text-lg leading-relaxed text-fog lg:col-span-7">
             <p>
-              Buchanan Home Remodeling started with one truck, one toolbox,
-              and a simple promise: do the work right and stand behind it. Two
-              decades and hundreds of homes later, that hasn&apos;t changed.
+              Buchanan Home Remodeling runs on a simple rule: do the work
+              right and stand behind it. We&apos;re a young, family-owned
+              company, and that rule is the whole business.
             </p>
             <p>
-              We&apos;re still family-owned and still based in{" "}
-              {COMPANY.area}. We keep the crew small on purpose — it&apos;s the
-              only way to guarantee the craft, the cleanliness, and the
-              communication that our name is on.
+              We&apos;re based in {COMPANY.base} and serve the {COMPANY.area}{" "}
+              area. We keep the crew small on purpose — it&apos;s the only way
+              to guarantee the craft, the cleanliness, and the communication
+              that our name is on.
             </p>
             <p>
               When you call, you talk to the people swinging the hammers. When
@@ -74,10 +73,10 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-hazard">
-              What we stand on
+              Our standards
             </p>
-            <h2 className="mt-4 font-display text-5xl text-bone sm:text-6xl">
-              Four non-negotiables.
+            <h2 className="mt-4 font-display text-5xl text-ink sm:text-6xl">
+              Four rules on every job.
             </h2>
           </Reveal>
           <div className="grid gap-px border border-steel md:grid-cols-2">
@@ -87,7 +86,7 @@ export default function AboutPage() {
                   <span className="font-display text-3xl text-hazard">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-3 font-display text-2xl text-bone">
+                  <h3 className="mt-3 font-display text-2xl text-ink">
                     {v.title}
                   </h3>
                   <p className="mt-3 leading-relaxed text-fog">{v.body}</p>

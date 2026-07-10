@@ -11,8 +11,7 @@ import { cn } from "@/lib/utils";
 
 const LINKS = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
+  { href: "/projects", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -25,11 +24,11 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
       className="flex items-center gap-3"
       aria-label="Buchanan Home Remodeling — home"
     >
-      <span className="grid h-9 w-9 place-items-center bg-hazard font-display text-xl text-ink">
+      <span className="grid h-9 w-9 place-items-center bg-hazard font-display text-xl text-bone">
         B
       </span>
       <span className="leading-none">
-        <span className="block font-display text-lg tracking-tight text-bone">
+        <span className="block font-display text-lg tracking-tight text-ink">
           Buchanan
         </span>
         <span className="block text-[0.6rem] uppercase tracking-[0.32em] text-fog">
@@ -65,7 +64,7 @@ export default function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
         scrolled || open
-          ? "border-b border-steel bg-ink/85 backdrop-blur-md"
+          ? "border-b border-steel bg-cloud/85 backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -83,7 +82,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="group relative block py-1 text-sm uppercase tracking-[0.12em] text-bone transition-colors hover:text-hazard"
+                  className="group relative block py-1 text-sm uppercase tracking-[0.12em] text-ink transition-colors hover:text-hazard"
                 >
                   {link.label}
                   <span
@@ -118,19 +117,19 @@ export default function Navbar() {
         >
           <span
             className={cn(
-              "h-0.5 w-7 bg-bone transition-transform duration-300",
+              "h-0.5 w-7 bg-ink transition-transform duration-300",
               open && "translate-y-2 rotate-45",
             )}
           />
           <span
             className={cn(
-              "h-0.5 w-7 bg-bone transition-opacity duration-300",
+              "h-0.5 w-7 bg-ink transition-opacity duration-300",
               open && "opacity-0",
             )}
           />
           <span
             className={cn(
-              "h-0.5 w-7 bg-bone transition-transform duration-300",
+              "h-0.5 w-7 bg-ink transition-transform duration-300",
               open && "-translate-y-2 -rotate-45",
             )}
           />
@@ -145,7 +144,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="border-t border-steel bg-ink lg:hidden"
+            className="border-t border-steel bg-cloud lg:hidden"
           >
             <ul className="flex flex-col px-6 py-6">
               {LINKS.map((link) => (
@@ -153,7 +152,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-4 font-display text-3xl uppercase text-bone transition-colors hover:text-hazard"
+                    className="block py-4 font-display text-3xl uppercase text-ink transition-colors hover:text-hazard"
                   >
                     {link.label}
                   </Link>

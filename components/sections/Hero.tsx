@@ -60,26 +60,20 @@ export default function Hero() {
       ref={root}
       className="relative flex min-h-screen items-end overflow-hidden"
     >
-      {/* Background layer (parallax) */}
-      <div ref={bg} className="absolute inset-0 -z-10 scale-110">
-        <img
-          src="/images/hero.svg"
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover opacity-40"
-          draggable={false}
-        />
-        <div className="absolute inset-0 bg-grid opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
+      {/* Background layer (parallax) — light gray with a subtle blueprint grid */}
+      <div ref={bg} className="absolute inset-0 -z-10 scale-110 bg-cloud">
+        <div className="absolute inset-0 bg-grid opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-cloud via-cloud/60 to-transparent" />
+        <div className="absolute -right-1/4 top-0 h-2/3 w-2/3 rounded-full bg-hazard/10 blur-3xl" />
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-32 lg:px-10">
         <p className="hero-fade mb-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-[0.28em] text-fog">
-          <span className="text-hazard">●</span> Family-owned · Est.{" "}
-          {COMPANY.established} · {COMPANY.area}
+          <span className="text-hazard">●</span> Family-owned · {COMPANY.base} ·
+          Serving {COMPANY.area}
         </p>
 
-        <h1 className="font-display text-[16vw] leading-[0.86] text-bone sm:text-[12vw] lg:text-[10rem]">
+        <h1 className="font-display text-[16vw] leading-[0.86] text-ink sm:text-[12vw] lg:text-[10rem]">
           <span className="block overflow-hidden">
             <span className="hero-line-inner block">Built Right.</span>
           </span>
@@ -92,9 +86,9 @@ export default function Hero() {
 
         <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <p className="hero-fade max-w-md text-base leading-relaxed text-fog sm:text-lg">
-            Family-owned home remodeling — kitchens, bathrooms, decks,
-            basements, and additions, built by a crew that treats your house
-            like their own.
+            A small family crew that shows up on time, keeps the site clean,
+            and does the job right. Look at the work, then tell us about
+            yours.
           </p>
 
           <div className="hero-fade flex flex-wrap gap-4">

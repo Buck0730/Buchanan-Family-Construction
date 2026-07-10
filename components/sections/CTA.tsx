@@ -5,7 +5,7 @@ import { COMPANY } from "@/lib/site";
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden border-t border-steel bg-hazard text-ink">
+    <section className="relative overflow-hidden border-t border-steel bg-hazard text-bone">
       {/* Oversized ghost word */}
       <span
         aria-hidden
@@ -16,15 +16,15 @@ export default function CTA() {
 
       <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink/70">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-bone/80">
             Free, no-pressure estimate
           </p>
-          <h2 className="mt-5 max-w-3xl font-display text-6xl leading-none text-ink sm:text-7xl lg:text-8xl">
-            Let&apos;s build the room you actually want.
+          <h2 className="mt-5 max-w-3xl font-display text-6xl leading-none text-bone sm:text-7xl lg:text-8xl">
+            Tell us what you want done.
           </h2>
-          <p className="mt-6 max-w-xl text-lg text-ink/80">
-            Tell us about your project and we&apos;ll get you a clear, itemized
-            quote — usually within a couple of days.
+          <p className="mt-6 max-w-xl text-lg text-bone/90">
+            Send the details, we&apos;ll come look at it, and you&apos;ll have a
+            clear, itemized quote — usually within a couple of days.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">

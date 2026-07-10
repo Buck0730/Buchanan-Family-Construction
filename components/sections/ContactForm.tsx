@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const FIELD =
-  "w-full border border-steel bg-transparent px-4 py-3.5 text-bone placeholder:text-fog/70 transition-colors focus:border-hazard focus:outline-none";
+  "w-full border border-steel bg-transparent px-4 py-3.5 text-ink placeholder:text-fog/70 transition-colors focus:border-hazard focus:outline-none";
 const LABEL =
   "mb-2 block text-xs uppercase tracking-[0.18em] text-fog";
 
@@ -40,7 +40,7 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div className="border border-hazard bg-concrete p-10">
-        <p className="font-display text-3xl uppercase text-bone">
+        <p className="font-display text-3xl uppercase text-ink">
           Message sent.
         </p>
         <p className="mt-3 text-fog">
@@ -113,13 +113,18 @@ export default function ContactForm() {
 
       <div>
         <label className={LABEL} htmlFor="projectType">
-          Project type
+          How can we help?
         </label>
-        <select id="projectType" name="projectType" className={FIELD} defaultValue="Kitchen">
-          <option className="bg-concrete">Kitchen</option>
-          <option className="bg-concrete">Bathroom</option>
-          <option className="bg-concrete">Addition</option>
-          <option className="bg-concrete">Other / not sure yet</option>
+        <select
+          id="projectType"
+          name="projectType"
+          className={FIELD}
+          defaultValue="Full remodel"
+        >
+          <option className="bg-concrete">Full remodel</option>
+          <option className="bg-concrete">Partial update</option>
+          <option className="bg-concrete">Custom cabinetry</option>
+          <option className="bg-concrete">Not sure yet</option>
         </select>
       </div>
 
@@ -138,7 +143,7 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="border border-hazard/60 bg-hazard/10 px-4 py-3 text-sm text-bone">
+        <p className="border border-hazard/60 bg-hazard/10 px-4 py-3 text-sm text-ink">
           {error}
         </p>
       )}

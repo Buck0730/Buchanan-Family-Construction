@@ -10,7 +10,7 @@ export default function Process() {
 
   return (
     <section
-      className="border-t border-steel bg-ink px-6 py-24 lg:px-10 lg:py-32"
+      className="border-t border-steel bg-cloud px-6 py-24 lg:px-10 lg:py-32"
       aria-label="Our process"
     >
       <div className="mx-auto max-w-7xl">
@@ -18,8 +18,8 @@ export default function Process() {
           <p className="text-xs uppercase tracking-[0.3em] text-hazard">
             How we work
           </p>
-          <h2 className="mt-4 font-display text-5xl text-bone sm:text-6xl">
-            First walk-through to last.
+          <h2 className="mt-4 font-display text-5xl text-ink sm:text-6xl">
+            How a job runs.
           </h2>
           <p className="mt-4 text-sm text-fog">Tap a step to see what happens.</p>
         </Reveal>
@@ -56,12 +56,12 @@ export default function Process() {
                     type="button"
                     onClick={() => setActive(i)}
                     aria-expanded={isActive}
-                    className="group flex w-full items-start gap-5 py-6 text-left transition-colors hover:bg-concrete/40"
+                    className="group flex w-full items-start gap-5 py-6 text-left transition-colors hover:bg-mist"
                   >
                     <span
                       className={cn(
                         "font-display text-2xl transition-colors",
-                        isActive ? "text-hazard" : "text-steel group-hover:text-fog",
+                        isActive ? "text-hazard" : "text-fog/40 group-hover:text-fog",
                       )}
                     >
                       {step.index}
@@ -71,8 +71,8 @@ export default function Process() {
                         className={cn(
                           "block font-display text-3xl uppercase transition-colors sm:text-4xl",
                           isActive
-                            ? "text-bone"
-                            : "text-fog group-hover:text-bone",
+                            ? "text-ink"
+                            : "text-fog group-hover:text-ink",
                         )}
                       >
                         {step.title}
@@ -92,7 +92,7 @@ export default function Process() {
                         "font-display text-2xl transition-transform duration-300",
                         isActive
                           ? "rotate-90 text-hazard"
-                          : "text-steel group-hover:text-fog",
+                          : "text-fog/40 group-hover:text-fog",
                       )}
                     >
                       →

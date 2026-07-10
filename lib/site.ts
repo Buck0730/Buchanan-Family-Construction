@@ -7,10 +7,10 @@ export const COMPANY = {
   phoneDisplay: "(412) 498-2865",
   phoneE164: "+14124982865",
   email: "build@buchananhomeremodeling.com",
-  area: "Greater Pittsburgh, PA",
+  area: "Greater Philadelphia",
+  base: "Upper Darby, PA",
   hours: "Mon–Fri · 7am–6pm",
-  license: "PA HIC #PA000000",
-  established: 1998,
+  // license: PA HIC number pending — see GitHub issue "Get PA HIC license number"
 } as const;
 
 export type Service = {
@@ -24,11 +24,78 @@ export type Service = {
   photos: string[];
 };
 
-/** Real project photography (bathrooms shot so far; other trades pending). */
-const BATHROOM_PHOTOS = Array.from(
-  { length: 18 },
-  (_, i) => `/images/projects/bathrooms/bathroom-${i + 1}.jpg`,
-);
+/**
+ * A single completed job. Photos live in
+ * `/public/images/projects/<service>/<slug>/photo-N.jpg`, ordered so photo-1
+ * is the cover. To add a job: drop a new folder of photos, then add an entry
+ * here — everything on the site (galleries, homepage rail) reads from this.
+ */
+export type Job = {
+  slug: string;
+  /** service slug this job belongs to (matches a Service.slug) */
+  service: string;
+  title: string;
+  location: string;
+  /** full photo paths under /public, cover first */
+  photos: string[];
+  /** optional caption shown beneath a specific photo, keyed by its path */
+  captions?: Record<string, string>;
+};
+
+/** Build the photo paths for a job folder holding photo-1…photo-count. */
+function jobPhotos(service: string, slug: string, count: number): string[] {
+  return Array.from(
+    { length: count },
+    (_, i) => `/images/projects/${service}/${slug}/photo-${i + 1}.jpg`,
+  );
+}
+
+/**
+ * Real project photography, organized by job. Bathrooms shot so far; other
+ * trades pending. Add new jobs here as they wrap.
+ */
+export const JOBS: Job[] = [
+  {
+    slug: "emerald-green-bath",
+    service: "bathrooms",
+    title: "Emerald green tile bath",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("bathrooms", "emerald-green-bath", 11),
+    captions: {
+      "/images/projects/bathrooms/emerald-green-bath/photo-9.jpg":
+        "Handmade by our team — this cabinet was custom-built to order.",
+    },
+  },
+  {
+    slug: "marble-attic-bath",
+    service: "bathrooms",
+    title: "Marble attic bath",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("bathrooms", "marble-attic-bath", 7),
+  },
+  {
+    slug: "charcoal-marble-bath",
+    service: "bathrooms",
+    title: "Charcoal marble bath",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("bathrooms", "charcoal-marble-bath", 8),
+  },
+  {
+    slug: "carrara-marble-master",
+    service: "bathrooms",
+    title: "Carrara marble master bath",
+    location: "Greater Philadelphia",
+    photos: jobPhotos("bathrooms", "carrara-marble-master", 10),
+  },
+];
+
+/** All jobs for a service, in manifest order. */
+export function jobsForService(slug: string): Job[] {
+  return JOBS.filter((j) => j.service === slug);
+}
+
+/** Every bathroom photo, flattened across jobs (cover-first per job). */
+const BATHROOM_PHOTOS = jobsForService("bathrooms").flatMap((j) => j.photos);
 
 function placeholderPhotos(slug: string, stem: string): string[] {
   return Array.from(
@@ -74,7 +141,7 @@ export const SERVICES: Service[] = [
     title: "Decks",
     tagline: "Outdoor living, built solid.",
     description:
-      "Decks and outdoor spaces framed straight, flashed right, and finished to handle Pittsburgh weather year after year.",
+      "Decks and outdoor spaces framed straight, flashed right, and finished to handle the weather year after year.",
     features: [
       "Composite & pressure-treated builds",
       "Railings, stairs & lighting",
@@ -130,7 +197,7 @@ export const PROCESS: ProcessStep[] = [
     index: "01",
     title: "Consultation",
     description:
-      "We walk your space, talk through what you want, and give you an honest read on budget and timeline — no pressure, no sales theater.",
+      "We walk the space, listen to what you want, and give you an honest read on budget and timeline. No pressure, no obligation.",
   },
   {
     index: "02",
@@ -148,37 +215,10 @@ export const PROCESS: ProcessStep[] = [
     index: "04",
     title: "Walkthrough",
     description:
-      "We walk every detail together and don't call it done until you're standing in it and it's right.",
+      "We walk every detail together. If something's not right, we fix it before we call the job done.",
   },
 ];
 
-export type Testimonial = {
-  quote: string;
-  name: string;
-  location: string;
-  project: string;
-};
-
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      "They tore our kitchen down to the studs and handed it back better than we pictured. Crew showed up on time every single day and cleaned up before they left.",
-    name: "Dana & Mark R.",
-    location: "Wexford, PA",
-    project: "Kitchen remodel",
-  },
-  {
-    quote:
-      "The quote was the price. No surprise change orders, no games. The tilework in our master bath is dead straight — you can tell these people care.",
-    name: "Priya S.",
-    location: "Mt. Lebanon, PA",
-    project: "Primary bathroom",
-  },
-  {
-    quote:
-      "Our addition ties into the original house so cleanly that guests can't tell where the old ends and the new begins. Exactly what we hoped for.",
-    name: "The Calloways",
-    location: "Cranberry Township, PA",
-    project: "Two-story addition",
-  },
-];
+// NOTE: Testimonials were removed 2026-07-09 — the placeholder quotes were
+// invented. When real customer quotes exist, re-add a TESTIMONIALS list and a
+// section component to render it.

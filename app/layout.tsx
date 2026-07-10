@@ -24,22 +24,22 @@ export const metadata: Metadata = {
     template: "%s · Buchanan Home Remodeling",
   },
   description:
-    "Family-owned home remodeling — kitchens, bathrooms, decks, basements, and additions built with craft, grit, and a straight answer. Serving Pennsylvania homeowners.",
+    "Honest quotes, clean job sites, and work we stand behind. Family-owned home remodeling based in Upper Darby, PA, serving the Greater Philadelphia area.",
   keywords: [
     "home remodeling",
-    "kitchen remodel",
-    "bathroom remodel",
-    "deck builder",
-    "basement finishing",
-    "home additions",
+    "remodeling contractor",
+    "renovation",
+    "custom cabinets",
     "general contractor",
-    "Pittsburgh",
+    "Upper Darby",
+    "Delaware County",
+    "Philadelphia",
     "Pennsylvania",
   ],
   openGraph: {
     title: "Buchanan Home Remodeling",
     description:
-      "Family-owned home remodeling — kitchens, bathrooms, decks, basements, and additions built to last.",
+      "Honest quotes, clean job sites, and work we stand behind. See our work and get a free quote.",
     type: "website",
   },
 };
@@ -54,7 +54,7 @@ export default function RootLayout({
       lang="en"
       className={`${anton.variable} ${inter.variable} h-full`}
     >
-      <body className="min-h-full bg-ink text-bone antialiased">
+      <body className="min-h-full bg-cloud text-ink antialiased">
         {children}
       </body>
     </html>

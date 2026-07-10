@@ -8,15 +8,16 @@ const base =
   "group relative inline-flex items-center justify-center gap-2 border px-7 py-4 font-display text-sm uppercase tracking-[0.08em] transition-colors duration-300 select-none disabled:cursor-not-allowed disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-hazard text-ink border-hazard hover:bg-bone hover:border-bone",
+  primary:
+    "bg-hazard text-bone border-hazard hover:bg-hazard-dark hover:border-hazard-dark",
   outline:
-    "bg-transparent text-bone border-steel hover:border-hazard hover:text-hazard",
+    "bg-transparent text-ink border-steel hover:border-hazard hover:text-hazard",
   ghost: "bg-transparent text-fog border-transparent hover:text-hazard",
-  // For light / accent backgrounds (e.g. the hazard CTA band):
+  // For the green CTA band: a solid dark button + a white-outline button.
   invert:
     "bg-ink text-bone border-ink hover:bg-bone hover:text-ink hover:border-bone",
   outlineDark:
-    "bg-transparent text-ink border-ink/40 hover:border-ink hover:text-ink",
+    "bg-transparent text-bone border-bone/50 hover:bg-bone hover:text-ink hover:border-bone",
 };
 
 type BaseProps = {
