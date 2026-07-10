@@ -75,25 +75,13 @@ export default function ContactForm() {
           <label className={LABEL} htmlFor="name">
             Name
           </label>
-          <input
-            id="name"
-            name="name"
-            required
-            className={FIELD}
-            placeholder="Jane Buchanan"
-          />
+          <input id="name" name="name" required className={FIELD} />
         </div>
         <div>
           <label className={LABEL} htmlFor="phone">
             Phone
           </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            className={FIELD}
-            placeholder="(412) 555-0142"
-          />
+          <input id="phone" name="phone" type="tel" className={FIELD} />
         </div>
       </div>
 
@@ -101,14 +89,7 @@ export default function ContactForm() {
         <label className={LABEL} htmlFor="email">
           Email
         </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          className={FIELD}
-          placeholder="you@email.com"
-        />
+        <input id="email" name="email" type="email" required className={FIELD} />
       </div>
 
       <div>
