@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element -- static logo asset */
+
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { COMPANY } from "@/lib/site";
@@ -29,14 +31,12 @@ export default function Footer() {
       {/* Columns */}
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-6 py-16 lg:grid-cols-3 lg:px-10">
         <div className="col-span-2 lg:col-span-1">
-          <div className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center bg-hazard font-display text-xl text-bone">
-              B
-            </span>
-            <span className="font-display text-lg tracking-tight text-ink">
-              Buchanan
-            </span>
-          </div>
+          <img
+            src="/images/logo.png"
+            alt="Buchanan Home Remodeling"
+            className="h-32 w-auto"
+            draggable={false}
+          />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-fog">
             Honest quotes, clean job sites, and work we stand behind.
             Family-owned, based in Upper Darby, PA.

@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- static logo asset */
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -24,9 +26,12 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
       className="flex items-center gap-3"
       aria-label="Buchanan Home Remodeling — home"
     >
-      <span className="grid h-9 w-9 place-items-center bg-hazard font-display text-xl text-bone">
-        B
-      </span>
+      <img
+        src="/images/logo-mark.png"
+        alt=""
+        className="h-11 w-auto"
+        draggable={false}
+      />
       <span className="leading-none">
         <span className="block font-display text-lg tracking-tight text-ink">
           Buchanan

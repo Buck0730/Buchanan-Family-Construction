@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element -- static logo asset */
+
 import { Button } from "@/components/ui/Button";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Reveal from "@/components/ui/Reveal";
@@ -6,6 +8,14 @@ import { COMPANY } from "@/lib/site";
 export default function CTA() {
   return (
     <section className="relative overflow-hidden border-t border-steel bg-hazard text-bone">
+      {/* Ghost logo meshed into the green, behind the oversized word */}
+      <img
+        src="/images/logo-mark-white.png"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute -bottom-6 -right-8 w-[26rem] select-none opacity-[0.14] sm:w-[34rem] lg:w-[42rem]"
+        draggable={false}
+      />
       {/* Oversized ghost word */}
       <span
         aria-hidden
