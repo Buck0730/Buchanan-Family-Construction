@@ -8,7 +8,7 @@ import { COMPANY } from "@/lib/site";
 export default function CTA() {
   return (
     <section className="relative overflow-hidden border-t border-steel bg-hazard text-bone">
-      {/* Ghost logo meshed into the green, behind the oversized word */}
+      {/* Ghost logo meshed into the green */}
       <img
         src="/images/logo-mark-white.png"
         alt=""
@@ -16,13 +16,6 @@ export default function CTA() {
         className="pointer-events-none absolute -bottom-6 -right-8 w-[26rem] select-none opacity-[0.14] sm:w-[34rem] lg:w-[42rem]"
         draggable={false}
       />
-      {/* Oversized ghost word */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -right-4 bottom-0 select-none font-display text-[28vw] leading-none text-ink/10"
-      >
-        BUILD
-      </span>
 
       <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
         <Reveal>
