@@ -6,7 +6,7 @@ export const COMPANY = {
   shortName: "Buchanan",
   phoneDisplay: "(412) 498-2865",
   phoneE164: "+14124982865",
-  email: "quote@buchananhr.com",
+  email: "quote@buckhomeremodel.com",
   area: "Greater Philadelphia",
   base: "Upper Darby, PA",
   hours: "Mon–Fri · 7am–6pm",
