@@ -42,14 +42,14 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <section className="border-b border-steel px-6 py-20 lg:px-10 lg:py-28">
+      <section className="border-b border-steel bg-hazard px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
-            <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">
+            <h2 className="font-display text-4xl leading-tight text-bone sm:text-5xl">
               Family-owned. One small crew. Careful work.
             </h2>
           </Reveal>
-          <Reveal className="space-y-6 text-lg leading-relaxed text-fog lg:col-span-7">
+          <Reveal className="space-y-6 text-lg leading-relaxed text-bone/90 lg:col-span-7">
             <p>
               Buchanan Home Remodeling runs on a simple rule: do the work
               right and stand behind it. We&apos;re a young, family-owned
