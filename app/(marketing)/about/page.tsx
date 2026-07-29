@@ -20,10 +20,10 @@ const VALUES = [
   },
   {
     title: "A clean site, every day",
-    body: "Floors covered, site swept, dust contained. You'll still be living there, and we build like we know it.",
+    body: "Floors covered, site swept, dust contained. You'll still be living there, and we work like we know it.",
   },
   {
-    title: "Built to code, built to last",
+    title: "Up to code, made to last",
     body: "Permits pulled, inspections passed, and materials that hold up for the long haul.",
   },
 ];

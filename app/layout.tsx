@@ -20,7 +20,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://buchananhomeremodeling.com"),
   title: {
-    default: "Buchanan Home Remodeling — Built Right, Built to Last",
+    default: "Buchanan Home Remodeling — Done Right, Made to Last",
     template: "%s · Buchanan Home Remodeling",
   },
   description:

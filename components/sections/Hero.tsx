@@ -75,11 +75,11 @@ export default function Hero() {
 
         <h1 className="font-display text-[16vw] leading-[0.86] text-ink sm:text-[12vw] lg:text-[10rem]">
           <span className="block overflow-hidden">
-            <span className="hero-line-inner block">Built Right.</span>
+            <span className="hero-line-inner block">Done Right.</span>
           </span>
           <span className="block overflow-hidden">
             <span className="hero-line-inner block">
-              Built to <span className="text-hazard">Last.</span>
+              Made to <span className="text-hazard">Last.</span>
             </span>
           </span>
         </h1>

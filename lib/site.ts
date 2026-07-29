@@ -6,7 +6,7 @@ export const COMPANY = {
   shortName: "Buchanan",
   phoneDisplay: "(412) 498-2865",
   phoneE164: "+14124982865",
-  email: "build@buchananhomeremodeling.com",
+  email: "quote@buchananhr.com",
   area: "Greater Philadelphia",
   base: "Upper Darby, PA",
   hours: "Mon–Fri · 7am–6pm",
@@ -63,7 +63,7 @@ export const JOBS: Job[] = [
     photos: jobPhotos("bathrooms", "emerald-green-bath", 11),
     captions: {
       "/images/projects/bathrooms/emerald-green-bath/photo-9.jpg":
-        "Handmade by our team — this cabinet was custom-built to order.",
+        "Handmade by our team — this cabinet was custom-made to order.",
     },
   },
   {
@@ -76,12 +76,12 @@ export const JOBS: Job[] = [
   {
     slug: "built-in-storage",
     service: "cabinets",
-    title: "Custom built-in cabinets",
+    title: "Custom cabinets & storage",
     location: "Greater Philadelphia",
     photos: jobPhotos("cabinets", "built-in-storage", 2),
     captions: {
       "/images/projects/cabinets/built-in-storage/photo-1.jpg":
-        "Built from scratch by our team — cabinets, shiplap, and a lift-top storage bench.",
+        "Made from scratch by our team — cabinets, shiplap, and a lift-top storage bench.",
     },
   },
   {
@@ -134,7 +134,7 @@ export const SERVICES: Service[] = [
     slug: "kitchens",
     index: "01",
     title: "Kitchens",
-    tagline: "The heart of the house, rebuilt.",
+    tagline: "The heart of the house, reworked.",
     description:
       "Full gut-and-rebuild kitchens, custom cabinetry, and layouts that actually work the way you cook and gather.",
     features: [
@@ -151,7 +151,7 @@ export const SERVICES: Service[] = [
     title: "Bathrooms",
     tagline: "Tile-to-ceiling craftsmanship.",
     description:
-      "Spa-grade bathrooms with waterproof builds, heated floors, and tilework that's set straight and sealed right.",
+      "Spa-grade bathrooms with waterproof systems, heated floors, and tilework that's set straight and sealed right.",
     features: [
       "Curbless & walk-in showers",
       "Heated tile floors",
@@ -164,11 +164,11 @@ export const SERVICES: Service[] = [
     slug: "decks",
     index: "03",
     title: "Decks",
-    tagline: "Outdoor living, built solid.",
+    tagline: "Outdoor living, done solid.",
     description:
       "Decks and outdoor spaces framed straight, flashed right, and finished to handle the weather year after year.",
     features: [
-      "Composite & pressure-treated builds",
+      "Composite & pressure-treated decking",
       "Railings, stairs & lighting",
       "Covered porches & pergolas",
       "Tear-offs & rebuilds",
@@ -196,7 +196,7 @@ export const SERVICES: Service[] = [
     title: "Additions",
     tagline: "More house, seamlessly.",
     description:
-      "Additions and bump-outs that look like they were always there — framed true, tied in clean, built to code.",
+      "Additions and bump-outs that look like they were always there — framed true, tied in clean, and up to code.",
     features: [
       "In-law & primary suites",
       "Bump-outs & second stories",
@@ -232,7 +232,7 @@ export const PROCESS: ProcessStep[] = [
   },
   {
     index: "03",
-    title: "Build",
+    title: "Remodel",
     description:
       "One dedicated crew, a clean and protected job site, and weekly updates so you're never wondering what's happening.",
   },

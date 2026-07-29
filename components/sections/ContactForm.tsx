@@ -119,7 +119,7 @@ export default function ContactForm() {
           required
           rows={5}
           className={`${FIELD} resize-none`}
-          placeholder="What are you hoping to build? Rough budget and timeline help, too."
+          placeholder="What are you hoping to remodel? Rough budget and timeline help, too."
         />
       </div>
 
