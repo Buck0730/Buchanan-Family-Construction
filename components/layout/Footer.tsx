@@ -78,7 +78,15 @@ export default function Footer() {
       <div className="border-t border-steel">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs uppercase tracking-[0.16em] text-fog sm:flex-row lg:px-10">
           <p>© {year} {COMPANY.name}</p>
-          <p>Licensed &amp; Insured</p>
+          <div className="flex items-center gap-5">
+            <p>Licensed &amp; Insured</p>
+            <Link
+              href="/admin"
+              className="border border-steel px-3 py-1.5 text-[0.65rem] uppercase tracking-[0.16em] text-fog transition-colors hover:border-hazard hover:text-hazard"
+            >
+              Log in
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
