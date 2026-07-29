@@ -49,6 +49,18 @@ create table if not exists leads (
 
 create index if not exists leads_created_at_idx on leads (created_at desc);
 
+-- ---- Website analytics: one row per page view or tracked click ------------
+create table if not exists page_events (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz default now(),
+  type text not null,         -- 'view' | 'click'
+  path text,                  -- pathname the event happened on
+  label text                  -- for clicks: 'Get a Quote' | 'Call' | 'Email'
+);
+
+create index if not exists page_events_created_at_idx on page_events (created_at desc);
+create index if not exists page_events_type_idx on page_events (type);
+
 -- ---- Row Level Security ---------------------------------------------------
 -- The app talks to these tables ONLY from server routes using the service-role
 -- key, which bypasses RLS. We enable RLS and add no anon policies, so the
@@ -56,3 +68,4 @@ create index if not exists leads_created_at_idx on leads (created_at desc);
 alter table agent_settings enable row level security;
 alter table calls enable row level security;
 alter table leads enable row level security;
+alter table page_events enable row level security;

@@ -21,6 +21,25 @@ export type CallRow = {
   notified: boolean;
 };
 
+export type LeadRow = {
+  id: string;
+  created_at: string;
+  name: string | null;
+  email: string | null;
+  phone: string | null;
+  project_type: string | null;
+  message: string | null;
+  notified: boolean;
+};
+
+export type PageEventRow = {
+  id: string;
+  created_at: string;
+  type: "view" | "click";
+  path: string | null;
+  label: string | null;
+};
+
 // ----- Clients -------------------------------------------------------------
 let serviceClient: SupabaseClient | null = null;
 
